@@ -5,9 +5,10 @@ ob_start();
 ?>
 <h1>Bienvenue sur ma page film</h1>
 <?php
-while ($film= $films->fetch()){
-    echo $film['id_film']."  ";
-    echo $film['titre']."<br>";
+while ($film= $films->fetch()){?>
+    <a href="index.php?action=detailFilm&id=<?=$film['id_film']?>"><?=$film['titre']?></a><br>
+<?php
+    // echo $film['titre']."<br>";
 }
 ?>
 
