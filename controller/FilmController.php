@@ -18,7 +18,7 @@ class FilmController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT f.id_film, f.titre, f.synopsis, f.duree, f.dateDeSortie, f.id_realisateur  
+        $sql= "SELECT f.id_film, f.titre, f.synopsis, f.duree, DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie , f.id_realisateur  
             From film f
             WHERE f.id_film = $id "; 
 
