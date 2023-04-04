@@ -37,6 +37,10 @@ if(isset($_GET['action'])){
 
         case "listActeurs" : 
             $ctrlActeur->findAll(); 
+        break;
+
+        case "detailActeur" : 
+            $ctrlActeur->findOneById($id); 
         break; 
     } 
 }else{ 
