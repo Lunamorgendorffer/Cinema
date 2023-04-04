@@ -4,13 +4,15 @@ ob_start();
 
 ?>
 <h1>Les categories de film </h1>
+
 <?php
-while ($genre= $genres->fetch()){
-    echo $genre['id_genre']."  ";
-    echo $genre['nom_genre']."<br>";
-    
+while ($genre= $genres->fetch()){?>
+    <a href="index.php?action=detailGenre&id=<?=$genre['id_genre']?>"><?=$genre['nom_genre']?></a><br>
+<?php
+    // echo $film['titre']."<br>";
 }
 ?>
+
 
 <?php
 
