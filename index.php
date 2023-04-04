@@ -31,8 +31,16 @@ if(isset($_GET['action'])){
             $ctrlGenre->findAll(); 
         break; 
 
+        case "detailGenre" : 
+            $ctrlGenre->findOneById($id); 
+        break; 
+
         case "listRealisateurs" : 
             $ctrlRealisateur->findAll(); 
+        break; 
+
+        case "detailRealisateur" : 
+            $ctrlRealisateur->findOneById($id); 
         break; 
 
         case "listActeurs" : 
