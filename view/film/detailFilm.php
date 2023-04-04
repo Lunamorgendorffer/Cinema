@@ -7,8 +7,8 @@ ob_start();
 <?php
 while ($film= $films->fetch()){
     echo $film['titre']."  ";
-    echo "de " .$film['id_realisateur']." /";
-    echo $film['dateDeSortie']."/ ";
+    echo "de " .$film['id_realisateur']." - ";
+    echo $film['dateDeSortie']." - ";
     echo $film['duree']." min <br>";
     echo $film['synopsis']."<br>";
 }
