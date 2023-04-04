@@ -11,13 +11,7 @@ while ($realisateur= $realisateurs->fetch()){?>
     // echo $film['titre']."<br>";
 }
 ?>
-<?php
-// while ($realisateur= $realisateurs->fetch()){
-//     echo $realisateur['prenom']."  ";
-//     echo $realisateur['nom']." ";
-//     echo $realisateur['age']."  ans.<br>";
-// }
-?>
+
 
 <?php
 
