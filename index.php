@@ -27,17 +27,30 @@ if(isset($_GET['action'])){
             $ctrlFilm->findOneById($id); 
         break;
 
+        case "ajouterFilm" : 
+            $ctrlFilm->addInput(); 
+        break;
+
         case "listGenres" : 
             $ctrlGenre->findAll(); 
         break; 
 
         case "detailGenre" : 
             $ctrlGenre->findOneById($id); 
-        break; 
+        break;
+
+        case "ajouterGenre" : 
+            $ctrlGenre->addInput(); 
+        break;
+
 
         case "listRealisateurs" : 
             $ctrlRealisateur->findAll(); 
         break; 
+
+        case "ajouterReal" : 
+            $ctrlRealisateur->addInput(); 
+        break;
 
         case "detailRealisateur" : 
             $ctrlRealisateur->findOneById($id); 
@@ -50,6 +63,19 @@ if(isset($_GET['action'])){
         case "detailActeur" : 
             $ctrlActeur->findOneById($id); 
         break; 
+
+        case "ajouterActeur" : 
+            $ctrlActeur->addInput(); 
+        break;
+
+        case "home" : 
+            $ctrlAccueil->pageAccueil(); 
+        break; 
+
+        case "pageAjouter": 
+            $ctrlAccueil->pageAjouter();
+        break;
+
     } 
 }else{ 
     $ctrlAccueil->pageAccueil(); 
