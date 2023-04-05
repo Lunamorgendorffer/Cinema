@@ -26,6 +26,44 @@ class RealisateurController{
 
     }
 
+    public function addInput(){
+
+
+        if (isset($_POST['submit'])){
+        
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            
+            if($nom&&$prenom){
+            
+                $dao = new DAO();
+                
+                $sql = "INSERT INTO realisateur (nom, prenom ) VALUES (:nom,:prenom )";
+   
+                $params = [
+                
+                "nom" => $nom,
+                
+                "prenom" => $prenom
+                
+                ];
+
+                $dao->executerRequete($sql, $params);
+                
+                require "view/ajouter/ajouter.php";
+            
+            }else{
+                echo "erreur 404";
+            } 
+        
+        }else{
+            echo " ta mere";
+        }
+        
+    }
+
 }
 
 ?>
