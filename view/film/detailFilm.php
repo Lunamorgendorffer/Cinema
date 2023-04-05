@@ -5,13 +5,14 @@ ob_start();
 ?>
 <h1>Detail film</h1>
 <?php
-while ($film= $films->fetch()){
+$film= $films->fetch();
+
+$realisateur= $realisateurs->fetch();
     echo $film['titre']."  ";
-    echo "de " .$film['id_realisateur']." - ";
+    echo "de " .$realisateur['prenom']."  ".$realisateur['nom']." ";
     echo $film['dateDeSortie']." - ";
     echo $film['duree']." min <br>";
     echo $film['synopsis']."<br>";
-}
 ?>
 
 <?php

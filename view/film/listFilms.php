@@ -12,6 +12,8 @@ while ($film= $films->fetch()){?>
 }
 ?>
 
+<a href="index.php?action=ajouter">AJOUTER</a>
+
 <?php
 
 $title="liste des films"; 
