@@ -1,4 +1,5 @@
 <?php
+require_once "bdd/DAO.php";
 
 class AcceuilController{
 
@@ -12,11 +13,15 @@ class AcceuilController{
 
         $dao = new DAO ();
         
-        $sql = "SELECT * FROM realisateur";
+        $sql = "SELECT * FROM realisateur r
+        INNER JOIN film f ON f.id_realisateur = r.id_realisateur";
                 
-        $realisateurS= $dao->executerRequete($sql);
+        $realisateurs= $dao->executerRequete($sql);
+       
+        $sql = "SELECT * FROM genre g";
+        $genres= $dao->executerRequete($sql);
         
-        require "view/ajouter/ajouter.php";
+        require "view/film/ajouterFilm.php";
     }
 
     
