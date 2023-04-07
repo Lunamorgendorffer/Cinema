@@ -43,7 +43,6 @@ if(isset($_GET['action'])){
             $ctrlGenre->addInput(); 
         break;
 
-
         case "listRealisateurs" : 
             $ctrlRealisateur->findAll(); 
         break; 
