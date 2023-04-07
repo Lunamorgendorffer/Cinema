@@ -24,15 +24,7 @@ ob_start();
   <a href="index.php?action=pageAjouter" class="btn btn-primary">Ajouter film</a>
 </div>
 
-<?php
-// while ($film= $films->fetch()){?>
-<!--      <a href="index.php?action=detailFilm&id=<?=$film['id_film']?>"><?=$film['titre']?></a><br> -->
-<?php
-    // echo $film['titre']."<br>";
-// }
-?>
 
-<!-- <a href="index.php?action=pageAjouter"><button>Ajouter film</button></a> -->
 <?php
 
 $title="liste des films"; 
