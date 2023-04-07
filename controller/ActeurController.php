@@ -19,9 +19,20 @@ class ActeurController{
         $dao = new DAO ();
        
         $sql= "SELECT a.id_acteur, a.prenom, a.nom, a.age From acteur a
-            WHERE a.id_acteur = $id "; 
+            WHERE a.id_acteur = :id"; 
 
-        $acteurs= $dao->executerRequete($sql);
+        $acteurs= $dao->executerRequete($sql,$params);
+
+        $sql2 = "SELECT r.nom as nom_personnage, f.titre ,DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie, f.Id_film
+        FROM acteur a 
+        INNER JOIN casting c ON c.id_acteur = a.id_acteur
+        INNER JOIN film f ON f.Id_film = c.id_film
+        INNER JOIN role r ON r.id_role = c.id_role
+        WHERE a.id_acteur = :id";
+
+        $params =['id'=> $id];
+
+        $casting= $dao->executerRequete($sql2,$params);
 
         require "view/acteur/detailActeur.php";
 

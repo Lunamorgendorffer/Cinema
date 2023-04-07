@@ -20,7 +20,7 @@ class FilmController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT f.id_film, f.titre, f.synopsis, f.duree, DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie ,CONCAT( r.nom, r.prenom) as reali
+        $sql= "SELECT f.id_film, f.titre, f.synopsis, f.duree, DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie ,f.note,CONCAT( r.nom, r.prenom) as reali
             From film f
             INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur 
             INNER JOIN film_genre fg ON fg.id_film = f.Id_film
@@ -30,17 +30,17 @@ class FilmController{
 
         $params =['id'=> $id];
 
-        $casting = "SELECT c.Id_film, CONCAT(a.prenom,' ',a.nom) as acteur , r.nom
-        FROM casting c 
-        INNER JOIN film f ON f.Id_film = c.Id_film 
-        INNER JOIN acteur a ON a.id_acteur = c.id_acteur
+        $casting = "SELECT CONCAT(a.nom,' ', a.prenom) as acteur , r.nom, a.id_acteur, c.id_film 
+        FROM acteur a 
+        INNER JOIN casting c ON c.id_acteur = a.id_acteur
+        INNER JOIN film f ON f.Id_film = c.id_film 
         INNER JOIN role r ON r.id_role = c.id_role
-        WHERE f.id_film = :id";
+        WHERE f.Id_film = :id";
 
 
-        $film= $dao->executerRequete($sql);
+        $film= $dao->executerRequete($sql,$params);
         
-        $casting= $dao->executerRequete($sql,$params);
+        $casting= $dao->executerRequete($casting,$params);
         // $genres=$dao->executerRequete($sql);
 
         require "view/film/detailFilm.php";
