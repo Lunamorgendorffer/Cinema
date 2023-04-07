@@ -25,40 +25,28 @@ class FilmController{
             INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur 
             INNER JOIN film_genre fg ON fg.id_film = f.Id_film
             INNER JOIN genre g ON g.id_genre = fg.id_genre
-            WHERE f.id_film = $id 
+            WHERE f.id_film = :id 
         "; 
 
-        $casting = "SELECT c.Id_film, CONCAT(a.prenom, a.nom) as acteur , r.nom
+        $params =['id'=> $id];
+
+        $casting = "SELECT c.Id_film, CONCAT(a.prenom,' ',a.nom) as acteur , r.nom
         FROM casting c 
         INNER JOIN film f ON f.Id_film = c.Id_film 
         INNER JOIN acteur a ON a.id_acteur = c.id_acteur
-        INNER JOIN role r ON r.id_role = c.id_role";
+        INNER JOIN role r ON r.id_role = c.id_role
+        WHERE f.id_film = :id";
 
 
         $film= $dao->executerRequete($sql);
         
-        $casting= $dao->executerRequete($sql);
+        $casting= $dao->executerRequete($sql,$params);
         // $genres=$dao->executerRequete($sql);
 
         require "view/film/detailFilm.php";
 
     }
     
-    // //Fonction pour gérer l'affichage du formulaire d'ajout de film.
-    public function ajouterFilm(){
-        // $dao = new DAO();
-        // $sql = "SELECT * FROM realisateur";
-        // $realisateurs = $dao->executerRequete($sql);
-
-        // Connexion à la base de données
-        $pdo = new PDO('mysql:host=localhost;dbname=cinema;charset=utf8', 'root', '');
-
-        // Récupération des réalisateurs
-        $stmt = $pdo->query('SELECT id_realisateur, prenom, nom FROM realisateurs');
-        $realisateurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        require "view/ajouter/ajouter.php";
-    }
 
     //fonction pour gérer le traitement de la requête d'ajout de film
     public function addInput(){
