@@ -5,15 +5,17 @@ ob_start();
 ?>
 <h1>Detail film</h1>
 <?php
-$film= $films->fetch();
+$film= $film->fetch();
 
-$realisateur= $realisateurs->fetch();
+// $realisateur= $realisateur->fetch();
     echo $film['titre']."  ";
-    echo "de " .$realisateur['prenom']."  ".$realisateur['nom']." ";
+    echo "de " .$film['reali'];
     echo $film['dateDeSortie']." - ";
     echo $film['duree']." min <br>";
     echo $film['synopsis']."<br>";
 ?>
+
+<a href="index.php?action=pageAjouter"><button>Ajouter casting</button></a>
 
 <?php
 
