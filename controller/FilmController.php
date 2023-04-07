@@ -66,7 +66,6 @@ class FilmController{
             if($titre && $duree && $note && $synopsis && $realisateurs){
 
 
-
                 $dao = new DAO();
 
                 $sql = "INSERT INTO film (titre, synopsis, duree, dateDeSortie, note, id_realisateur) VALUES (:titre, :synopsis, :duree, :dateDeSortie, :note, :id_realisateur)";
