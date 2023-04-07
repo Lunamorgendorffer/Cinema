@@ -18,10 +18,10 @@ class ActeurController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT a.id_acteur, a.prenom, a.nom, a.age From acteur a
-            WHERE a.id_acteur = :id"; 
-
-        $acteurs= $dao->executerRequete($sql,$params);
+        $sql= "SELECT *
+        From acteur a
+        WHERE a.id_acteur = :id"
+        ; 
 
         $sql2 = "SELECT r.nom as nom_personnage, f.titre ,DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie, f.Id_film
         FROM acteur a 
@@ -33,6 +33,7 @@ class ActeurController{
         $params =['id'=> $id];
 
         $casting= $dao->executerRequete($sql2,$params);
+        $acteurs= $dao->executerRequete($sql,$params);
 
         require "view/acteur/detailActeur.php";
 
@@ -40,8 +41,6 @@ class ActeurController{
     }
 
     public function addInput(){
-
-
         if (isset($_POST['submit'])){
         
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -51,34 +50,41 @@ class ActeurController{
             $age= filter_input(INPUT_POST, "age", FILTER_SANITIZE_NUMBER_INT);
             
             $nationalite = filter_input(INPUT_POST, "nationalite", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
             
             if($nom&&$prenom&&$age&&$nationalite){
             
                 $dao = new DAO();
                 
                 $sql = "INSERT INTO acteur (nom, prenom, age, nationalite ) VALUES (:nom,:prenom, :age, :nationalite )";
-   
+
                 $params = [
-                
                 "nom" => $nom,
-                
                 "prenom" => $prenom,
-                
                 "age" => $age,
                 "nationalite"=>$nationalite
+                ];
                 
+                $acteur = $dao->executerRequete($sql, $params);
+
+                $sql2 = "INSERT INTO casting (id_film, id_actor, id_role) VALUES (:film, LAST_INSERT_ID(), :id_role)";
+                
+
+                $params2 = [
+                    'film' => $film,
+                    'id_role' => $role
                 ];
 
-                $dao->executerRequete($sql, $params);
+                $film =  $dao->executerRequete($sql2, $params2);
                 
-                require "view/ajouter/ajouter.php";
+                header('Location:index.php?action=listActeurs');
             
             }else{
-                echo "erreur 404";
+                echo "Erreur : tous les champs sont requis.";
             } 
         
         }else{
-            echo " ta mere";
+            echo "Le formulaire n'a pas été soumis.";
         }
         
     }
