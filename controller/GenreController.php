@@ -67,7 +67,7 @@ class GenreController{
         
     }
 
-    public function deleteActor($id){
+    public function deleteGenre($id){
         $dao = new DAO;
 
         $sql="DELETE FROM genre WHERE id_genre = :id_genre ";
