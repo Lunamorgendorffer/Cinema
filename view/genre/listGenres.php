@@ -23,7 +23,7 @@ ob_start();
             </div>
             <div class="row">
         <div class="d-flex justify-content-evenly">
-        <a href="index.php?action=ajouterGenre" class="btn btn-primary">Ajouter un acteur</a>
+        <a href="index.php?action=viewAjouterGenre" class="btn btn-primary">Ajouter genre</a>
     </div>    
          
 </div>
