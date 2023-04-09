@@ -13,18 +13,15 @@ ob_start();
                     <h5 class="card-title text-center"><a href="index.php?action=detailActeur&id=<?=$acteur['id_acteur']?>"><?=$acteur['prenom']." ".$acteur['nom']?></a></h5><br>
                 </div>
                 <hr class="bg-light">
-                <div class="dropdown d-flex justify-content-evenly">
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <button type="button" class="btn btn-lg"><a href="index.php?action=deleteActeur&id=<?=$acteur['id_acteur']?>">Supprimer</a></button>
-                    </ul>
+                <div class="d-flex justify-content-center">
+                    <a href="index.php?action=deleteActeur&id=<?=$acteur['id_acteur']?>"><button type="button" class="btn btn-outline-danger">Supprimer</button></a>
                 </div>
             </div>
         <?php }?>
     </div>
     <div class="row">
         <div class="d-flex justify-content-evenly">
-        <button type="button" class="btn btn-lg  mt-2 "><a href="index.php?action=viewAdd" class="btn btn-primary">Ajouter un acteur</a></button>
-        </div>
+        <a href="index.php?action=pageAjouterActeur" class="btn btn-primary">Ajouter un acteur</a>
     </div>
 </div>
 
