@@ -49,7 +49,7 @@ class FilmController{
     
 
     //fonction pour gérer le traitement de la requête d'ajout de film
-    public function addInput(){
+    public function addFilm(){
         if(isset($_POST['submit'])){
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -107,6 +107,19 @@ class FilmController{
             echo "Pikachu";
         }
     }
+
+    public function deleteFilm($id){
+        $dao = new DAO;
+
+        $sql="DELETE FROM film WHERE Id_film = :Id_film ";
+
+        $params = ['id' => $id];
+
+        $delete=  $dao->executerRequete($sql,$params);
+
+        header("location:index.php?action=listsFilms");
+    }
+
     
 }
 
