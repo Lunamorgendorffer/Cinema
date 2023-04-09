@@ -67,6 +67,18 @@ class GenreController{
         
     }
 
+    public function deleteActor($id){
+        $dao = new DAO;
+
+        $sql="DELETE FROM genre WHERE id_genre = :id_genre ";
+
+        $params = ['id' => $id];
+
+        $delete=  $dao->executerRequete($sql,$params);
+
+        header("location:index.php?action=listsGenres");
+    }
+
 }
 
 ?>
