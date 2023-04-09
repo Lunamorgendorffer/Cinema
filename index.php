@@ -27,8 +27,16 @@ if(isset($_GET['action'])){
             $ctrlFilm->findOneById($id); 
         break;
 
+        case "viewAjouterFilm": 
+            $ctrlAccueil->pageAjouter();
+        break;
+
         case "ajouterFilm" : 
-            $ctrlFilm->addInput(); 
+            $ctrlFilm->addFilm(); 
+        break;
+
+        case "SupprimerFilm" : 
+            $ctrlFilm->deleteFilm($id); 
         break;
 
         case "listGenres" : 
@@ -63,8 +71,12 @@ if(isset($_GET['action'])){
             $ctrlActeur->findOneById($id); 
         break; 
 
+        case "pageAjouterActeur" : 
+            $ctrlActeur->viewAddActor (); 
+        break; 
+    
         case "ajouterActeur" : 
-            $ctrlActeur->addInput(); 
+            $ctrlActeur->addActor(); 
         break;
 
         case "home" : 
