@@ -18,17 +18,25 @@ class GenreController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT g.id_genre, g.nom_genre From genre g "; 
+        $sql= "SELECT g.id_genre, g.nom_genre 
+        From genre g 
+        WHERE g.id_genre = :id"; 
 
-        $genres= $dao->executerRequete($sql);
+        $params = [":id" => $id];
+
+        $genres= $dao->executerRequete($sql, $params);
 
         require "view/genre/detailGenre.php";
         
 
-
     }
 
-    public function addInput(){
+    public function viewPageGenre()
+    {
+        require 'view/genre/ajouterGenre.php';
+    }
+
+    public function addGenre(){
 
 
         if (isset($_POST['submit'])){
@@ -47,14 +55,14 @@ class GenreController{
 
                 $dao->executerRequete($sql, $params);
                 
-                require "view/ajouter/ajouter.php";
+                header('Location: index.php?action=listGenres');
             
             }else{
-                echo "erreur 404";
+                echo "Erreur : tous les champs sont requis.";
             } 
         
         }else{
-            echo " ta mere";
+            echo "Le formulaire n'a pas été soumis.";
         }
         
     }
