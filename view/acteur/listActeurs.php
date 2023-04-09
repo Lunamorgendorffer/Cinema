@@ -15,7 +15,7 @@ ob_start();
                 <hr class="bg-light">
                 <div class="dropdown d-flex justify-content-evenly">
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <button type="button" class="btn btn-lg"><a href="index.php?action=deletActeur&id=<?=$acteur['id_acteur']?>">Supprimer</a></button>
+                        <button type="button" class="btn btn-lg"><a href="index.php?action=deleteActeur&id=<?=$acteur['id_acteur']?>">Supprimer</a></button>
                     </ul>
                 </div>
             </div>
@@ -23,7 +23,7 @@ ob_start();
     </div>
     <div class="row">
         <div class="d-flex justify-content-evenly">
-            <a href="index.php?action=ajouterActeur" class="btn btn-primary">Ajouter un acteur</a>
+        <button type="button" class="btn btn-lg  mt-2 "><a href="index.php?action=viewAdd" class="btn btn-primary">Ajouter un acteur</a></button>
         </div>
     </div>
 </div>

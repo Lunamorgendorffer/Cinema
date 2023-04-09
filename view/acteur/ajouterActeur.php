@@ -1,13 +1,13 @@
 <?php
 
 ob_start();
-require_once "controller/ActeurController.php"; 
-
 ?>
+
 <h3 class="mb-5 mt-5" >Ajouter un acteur</h3>
+
 <div class="container mb-5">
     <div class="row g-0">
-        <form action="index.php?action=ajouterFilm" method="post">
+        <form action="index.php?action=ajouterActeur" method="post">
             <div class="row">
                 <div class="mb-5 col-4">
                     <label  class="form-label" >Nom</label>
@@ -34,9 +34,9 @@ require_once "controller/ActeurController.php";
                 </div>
                 <select name="id_film" class="form-select form-select-lg mb-5 text-center col-7 ">
                     <option selected>Choisissez le film correspondant</option>
-                    <?php foreach($films as $film) : ?>
+                    <?php foreach($films as $film){ ?>
                     <option value="<?= $film['Id_film']?>"><?=$film['titre']?></option>
-                    <?php endforeach ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="d-flex justify-content-evenly">
