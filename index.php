@@ -65,13 +65,18 @@ if(isset($_GET['action'])){
             $ctrlRealisateur->findAll(); 
         break; 
 
-        case "ajouterReal" : 
-            $ctrlRealisateur->addInput(); 
-        break;
-
         case "detailRealisateur" : 
             $ctrlRealisateur->findOneById($id); 
         break; 
+        
+        case "pageAjouterReal" : 
+            $ctrlRealisateur->viewPageRealisateur(); 
+        break;
+
+        case "ajouterReal" : 
+            $ctrlRealisateur->addRealisateur(); 
+        break;
+
 
         case "listActeurs" : 
             $ctrlActeur->findAll(); 
