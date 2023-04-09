@@ -48,7 +48,7 @@ if(isset($_GET['action'])){
         break;
 
         case "ajouterGenre" : 
-            $ctrlGenre->addInput(); 
+            $ctrlGenre->addGenre(); 
         break;
 
         case "listRealisateurs" : 
