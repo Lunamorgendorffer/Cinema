@@ -40,7 +40,12 @@ class ActeurController{
 
     }
 
-    public function addInput(){
+    public function viewAddActor (){
+        require "view/acteur/ajouterActeur.php";
+
+    }
+
+    public function addActor(){
         if (isset($_POST['submit'])){
         
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -67,16 +72,6 @@ class ActeurController{
                 
                 $acteur = $dao->executerRequete($sql, $params);
 
-                $sql2 = "INSERT INTO casting (id_film, id_actor, id_role) VALUES (:film, LAST_INSERT_ID(), :id_role)";
-                
-
-                $params2 = [
-                    'film' => $film,
-                    'id_role' => $role
-                ];
-
-                $film =  $dao->executerRequete($sql2, $params2);
-                
                 header('Location:index.php?action=listActeurs');
             
             }else{
