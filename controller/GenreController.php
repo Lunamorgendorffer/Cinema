@@ -31,8 +31,7 @@ class GenreController{
 
     }
 
-    public function viewPageGenre()
-    {
+    public function viewPageGenre(){
         require 'view/genre/ajouterGenre.php';
     }
 
