@@ -97,14 +97,11 @@ class FilmController{
 
                 header('Location: index.php?action=listFilms');
 
-               
-
             } else {
-                echo "Erreur 404
-                ";
+                echo "Erreur : tous les champs sont requis.";
             }
         } else {
-            echo "Pikachu";
+            echo "Le formulaire n'a pas été soumis.";
         }
     }
 
