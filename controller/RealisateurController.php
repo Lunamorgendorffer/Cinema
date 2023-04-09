@@ -17,16 +17,34 @@ class RealisateurController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT r.id_realisateur, r.prenom, r.nom, r.age From realisateur r "; 
+        $sql= "SELECT r.id_realisateur, r.prenom, r.nom, r.age, r.sexe, r.nationalite,  r.biographie
+        From realisateur r 
+        WHERE r.id_realisateur = :id
+        "; 
 
-        $realisateurs= $dao->executerRequete($sql);
+        $sql2 = "SELECT r.nom as nom_personnage, f.titre ,DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie, f.Id_film
+        FROM acteur a 
+        INNER JOIN casting c ON c.id_acteur = a.id_acteur
+        INNER JOIN film f ON f.Id_film = c.id_film
+        INNER JOIN role r ON r.id_role = c.id_role
+        WHERE a.id_acteur = :id";
+
+        $params =['id'=> $id];
+
+        $realisateurs= $dao->executerRequete($sql,$params);
+        $castings= $dao->executerRequete($sql2,$params);
 
         require "view/realisateur/detailRealisateur.php";
 
 
     }
 
-    public function addInput(){
+    public function viewPageRealisateur(){
+        require "view/acteur/ajouterRealisateur.php";
+
+    }
+
+    public function addRealisateur(){
 
 
         if (isset($_POST['submit'])){
@@ -52,17 +70,30 @@ class RealisateurController{
 
                 $dao->executerRequete($sql, $params);
                 
-                require "view/ajouter/ajouter.php";
+                header('Location:index.php?action=listActeurs');
             
             }else{
-                echo "erreur 404";
+                echo "Erreur : tous les champs sont requis.";
             } 
         
         }else{
-            echo " ta mere";
+            echo "Le formulaire n'a pas été soumis.";
         }
         
     }
+
+    public function deleterealisateur($id){
+        $dao = new DAO;
+
+        $sql="DELETE FROM realisateur WHERE id_realisateur = :id ";
+
+        $params = ['id' => $id];
+
+        $delete=  $dao->executerRequete($sql,$params);
+
+        header("location:index.php?action=listsRealisateurs");
+    }
+
 
 }
 
