@@ -14,14 +14,12 @@ ob_start();
         </h5>
       </div>
       <hr class="bg-light">
-      <div class="dropdown d-flex justify-content-evenly">
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <button type="button" class="btn btn-lg "><a href="">Supprimer </a></button>
-        </ul>
+      <div class="d-flex justify-content-center">
+      <a href="index.php?action=deleteFilm&id=<?=$film['id_film'] ?>"><button type="button" class="btn btn-outline-danger">Supprimer</button></a>
       </div>
     </div>
   <?php } ?>
-  <a href="index.php?action=pageAjouter" class="btn btn-primary">Ajouter film</a>
+  <a href="index.php?action=viewAjouterFilm" class="btn btn-primary">Ajouter film</a>
 </div>
 
 
