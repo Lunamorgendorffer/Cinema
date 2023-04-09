@@ -87,7 +87,7 @@ class ActeurController{
     public function deleteActor($id){
         $dao = new DAO;
 
-        $sql="DELETE FROM acteur WHERE id_acteur = :id_acteur ";
+        $sql="DELETE FROM acteur WHERE id_acteur = :id ";
 
         $params = ['id' => $id];
 
