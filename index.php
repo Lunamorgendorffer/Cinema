@@ -47,9 +47,19 @@ if(isset($_GET['action'])){
             $ctrlGenre->findOneById($id); 
         break;
 
+        case "viewAjouterGenre" : 
+            $ctrlGenre->viewPageGenre(); 
+        break;
+
         case "ajouterGenre" : 
             $ctrlGenre->addGenre(); 
         break;
+
+        case "SupprimerGenre" : 
+            $ctrlGenre->deleteGenre(); 
+        break;
+
+        
 
         case "listRealisateurs" : 
             $ctrlRealisateur->findAll(); 
