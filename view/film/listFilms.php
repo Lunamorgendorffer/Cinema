@@ -8,6 +8,9 @@ ob_start();
 <div class="row row-cols-md-5 g-4 mt-5 d-flex justify-content-evenly">
   <?php foreach ($films->fetchAll() as $film){?>
     <div class="card m-2 mt-4 mb-4 bg-dark">
+      <figure>
+      <a class="detail-film card-img-top" href="index.php?action=detailFilm&id=<?= $film['id_film'] ?>"><?= $film['affiche'];?></a> 
+      </figure>
       <div class="card-text">
         <h5 class="card-title text-center">
           <a href="index.php?action=detailFilm&id=<?= $film['id_film'] ?>"><?= $film['titre'] ?></a>

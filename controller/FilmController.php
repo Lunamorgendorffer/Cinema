@@ -9,7 +9,7 @@ class FilmController{
 
         $dao = new DAO ();
        
-        $sql= "SELECT f.id_film, f.titre From film f "; 
+        $sql= "SELECT f.id_film, f.titre, f.affiche From film f "; 
 
         $films= $dao->executerRequete($sql);
 
@@ -20,10 +20,10 @@ class FilmController{
     public function findOneById($id){
         $dao = new DAO ();
        
-        $sql= "SELECT f.id_film, f.titre, f.synopsis, f.duree, DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie ,f.note,CONCAT( r.nom, r.prenom) as reali
+        $sql= "SELECT f.id_film, f.titre, f.synopsis,f.affiche, f.duree, DATE_FORMAT(f.dateDeSortie,'%d/%m/%Y') AS dateDeSortie ,f.note,CONCAT( r.nom, r.prenom) as reali
             From film f
             INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur 
-            INNER JOIN film_genre fg ON fg.id_film = f.Id_film
+            INNER JOIN film_genre fg ON fg.id_film = f.id_film
             INNER JOIN genre g ON g.id_genre = fg.id_genre
             WHERE f.id_film = :id 
         "; 
@@ -33,9 +33,9 @@ class FilmController{
         $casting = "SELECT CONCAT(a.nom,' ', a.prenom) as acteur , r.nom, a.id_acteur, c.id_film 
         FROM acteur a 
         INNER JOIN casting c ON c.id_acteur = a.id_acteur
-        INNER JOIN film f ON f.Id_film = c.id_film 
+        INNER JOIN film f ON f.id_film = c.id_film 
         INNER JOIN role r ON r.id_role = c.id_role
-        WHERE f.Id_film = :id";
+        WHERE f.id_film = :id";
 
 
         $film= $dao->executerRequete($sql,$params);
@@ -108,7 +108,7 @@ class FilmController{
     public function deleteFilm($id){
         $dao = new DAO;
 
-        $sql="DELETE FROM film WHERE Id_film = :Id_film ";
+        $sql="DELETE FROM film WHERE id_film = :id ";
 
         $params = ['id' => $id];
 
