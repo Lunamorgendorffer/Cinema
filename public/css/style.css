@@ -31,13 +31,13 @@ header div div ul li a:hover{
 .card-text a{
     text-decoration: none;
     color:  #01355D;
-    font-weight: 400;
+    font-weight: bold;
 
 }
 
 .card-text a:hover{
-    background-color: #fff;
-    color: black;
+    background-color: #16619a;
+    color: white;
    
 }
 
