@@ -28,7 +28,7 @@ ob_start();
         </div>
 </div>
 
-<a href="#"><button>Ajouter casting</button></a>
+<a href="index.php?action=viewAjouterCasting&id=<?= $casting['id_film']?>"><button>Ajouter casting</button></a>
 
 <?php
 
