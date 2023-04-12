@@ -35,6 +35,14 @@ if(isset($_GET['action'])){
             $ctrlFilm->addFilm(); 
         break;
 
+        case "ajouterCasting" : 
+            $ctrlFilm->addCasting(); 
+        break;
+        
+        case "viewAjouterCasting" : 
+            $ctrlFilm->viewAddCasting(); 
+        break; 
+
         case "SupprimerFilm" : 
             $ctrlFilm->deleteFilm($id); 
         break;
