@@ -24,7 +24,7 @@ ob_start();
   <?php } ?>
 </div>
 
-<div class=" d-flex justify-content-evenly">
+<div class=" mb-4 d-flex justify-content-center">
   <a href="index.php?action=viewAjouterFilm" class="btn btn-primary " >Ajouter un film</a>
 </div>
 
