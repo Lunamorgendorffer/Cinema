@@ -43,9 +43,10 @@ class FilmController{
         $casting= $dao->executerRequete($casting,$params);
         // $genres=$dao->executerRequete($sql);
 
-        require "view/film/detailFilm.php";
+        require "view/film/detailFilm.php"; 
 
     }
+
     
 
     //fonction pour gérer le traitement de la requête d'ajout de film
@@ -83,13 +84,13 @@ class FilmController{
                 
                 $id_genre =  $_POST['id_genre'];
                 
-                $sql= "INSERT TO film_genre (id_genre,id_film) VALUES (:id_genre, LAST_INSERT_ID()) ";
+                $sql1= "INSERT INTO film_genre (id_genre,id_film) VALUES (:id_genre, LAST_INSERT_ID()) ";
                 
                 $params = [
                     "id_genre" => $id_genre,
                 ];
 
-                $genres=$dao->executerRequete($sql, $params);
+                $genres=$dao->executerRequete($sql1, $params);
 
                 echo "vous avez ajouté un film avec succès";
 
@@ -106,16 +107,78 @@ class FilmController{
     }
 
     public function deleteFilm($id){
+        // $id = $_GET['id']; 
+        
         $dao = new DAO;
-
-        $sql="DELETE FROM film WHERE id_film = :id ";
+        
+        $sql1="DELETE FROM film_genre WHERE id_film = :id ";
+        $sql2 = "DELETE FROM casting WHERE id_film = :id ";
+        $sql3 = "DELETE FROM film WHERE id_film = :id "; 
+        
 
         $params = ['id' => $id];
 
-        $delete=  $dao->executerRequete($sql,$params);
+        $delete=  $dao->executerRequete($sql1,$params);
+        $casting = $dao->executerRequete($sql2, $params);
+        $films = $dao->executerRequete($sql3, $params);
+        
+        echo "vous avez supprimé un film avec succès";
 
         header("location:index.php?action=listsFilms");
     }
+
+    public function viewAddCasting (){
+        $dao = new DAO();
+        $sql = "SELECT * FROM acteur a";
+       
+        $acteurs= $dao->executerRequete($sql);
+       
+        $sql2 = "SELECT * FROM role r";
+        
+        $roles= $dao->executerRequete($sql2);
+        require "view/film/ajouterCasting.php";
+
+    }
+
+    public function addCasting(){
+        if (isset($_POST['submit'])){
+        
+            $id_acteur = $_POST['id_acteur'];
+            
+            $id_role = $_POST['id_role'];
+
+            $id_film = $_POST['id_film'];
+            
+            
+            if($id_role&&$id_acteur){
+            
+                $dao = new DAO();
+                
+                $sql = "INSERT INTO casting (id_film, id_acteur, id_role) VALUES (:id_film, :id_acteur, :id_role )";
+             
+
+                $params = [
+                "id_role" => $id_role,
+                "id_acteur" => $id_acteur,
+                "id_film" => $id_film
+                
+                ];
+                
+                $acteur = $dao->executerRequete($sql, $params);
+
+                header('Location:index.php?action=detailfilm');
+            
+            }else{
+                echo "Erreur : tous les champs sont requis.";
+            } 
+        
+        }else{
+            echo "Le formulaire n'a pas été soumis.";
+        }
+        
+    }
+
+
 
     
 }
