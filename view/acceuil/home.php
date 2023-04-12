@@ -3,7 +3,7 @@
 ob_start();
 
 ?>
-<h1>Bienvenue sur ma page d'acceuil</h1>
+<h1 class="home" >Bienvenue sur ma page d'acceuil</h1>
 
 <?php
 
