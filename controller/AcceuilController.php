@@ -18,8 +18,8 @@ class AcceuilController{
                 
         $realisateurs= $dao->executerRequete($sql);
        
-        $sql = "SELECT * FROM genre g";
-        $genres= $dao->executerRequete($sql);
+        $sql2 = "SELECT * FROM genre g";
+        $genres= $dao->executerRequete($sql2);
         
         require "view/film/ajouterFilm.php";
     }
